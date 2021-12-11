@@ -1,7 +1,11 @@
 import { Typography } from '@material-ui/core'
 
-function Cart () {
-  return <Typography>CART</Typography>
+function Cart ({ nrOfItems }) {
+  return (
+    
+        <Typography> CART {nrOfItems}</Typography>
+     
+  )
 }
 
 export default Cart

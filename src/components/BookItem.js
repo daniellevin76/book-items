@@ -1,33 +1,43 @@
-import { Box, Typography, Button, CardActions } from '@material-ui/core'
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+  CardActions,
+  makeStyles,
+  CardHeader,
+} from "@material-ui/core";
 
-function BookItem ({ bookTitle, Author }) {
+const useStyles = makeStyles({
+  card: { height: "82%", width: "75%" },
+  cardMedia: { height: "50%", width: "75%" },
+});
+
+function BookItem({ bookTitle, Author, imageName }) {
+  const classes = useStyles();
+
   return (
-    <>
-      <Box display='flex' flexDirection='column'>
-        <Box>
-          <Typography variant='h6' color='text.secondary' gutterBottom>
-            {bookTitle}
-          </Typography>
-        </Box>
-        <Box>
-          <Typography variant='body6' color='text.secondary' gutterBottom>
-            av {Author}
-          </Typography>
-        </Box>
-        <Box>
-          <Typography variant='body2'>
-            lorem ipsum dolor sit amet, consectetur adip, lorem ipsum dolor sit
-            amet, consectetur adip
-          </Typography>
-        </Box>
-      </Box>
+    <Card elevation={2} className={classes.card}>
+      <CardHeader title={bookTitle} subheader={Author} />
+      <CardMedia
+        className={classes.cardMedia}
+        component="img"
+        image={process.env.PUBLIC_URL + imageName}
+        alt={{ bookTitle }}
+      />
+      <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          Why do we use it? It is a long established fact that a
+        </Typography>
+      </CardContent>
       <CardActions>
-        <Button size='medium' variant='contained' color='primary'>
-          Add to cart
+        <Button size="medium" variant="contained" color="primary">
+          Add to Cart
         </Button>
       </CardActions>
-    </>
-  )
+    </Card>
+  );
 }
 
-export default BookItem
+export default BookItem;
